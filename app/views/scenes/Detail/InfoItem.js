@@ -5,7 +5,9 @@ import {
     StyleSheet,
     Text,
     View,
-    Image
+    Image,
+    TouchableHighlight,
+    TouchableOpacity
 } from 'react-native';
 import SceneComponent from './../../widget/SceneComponent';
 
@@ -18,7 +20,7 @@ class TimeColumn extends SceneComponent {
     }
     render() {
         return <View style={styles.timeColumn}>
-            <Text style={[styles.timeText]}>{this.props.value}</Text>
+            <Text style={[styles.timeText,this.props.style]}>{this.props.value}</Text>
         </View>
     }
 }
@@ -29,7 +31,7 @@ class TemperatureColumn extends SceneComponent {
     }
     render() {
         return <View style={styles.temperatureColumn}>
-            <Text style={styles.temperatureText}>{this.props.value}°</Text>
+            <Text style={[styles.temperatureText,this.props.style]}>{this.props.value}°</Text>
         </View>
     }
 }
@@ -40,12 +42,19 @@ export default class InfoItem extends SceneComponent {
     }
     render() {
         var dataSource = this.props;
-        return <View style={[styles.row, this.props.style]}>
+        return <TouchableOpacity
+            onPress={this.props.onPress}
+            underlayColor='#9ed8ee'
+            activeOpacity={1}
+            style={[styles.row, this.props.style]}
+        >
             <TimeColumn
+                style = {this.props.isSelected?{color:'#333333'}:null}
                 value={dataSource.date} />
             <TemperatureColumn
+                style = {this.props.isSelected?{color:'#333333'}:null}
                 value={dataSource.temperature} />
-        </View>
+        </TouchableOpacity>
     }
 }
 InfoItem.defaultProps = {
@@ -70,7 +79,7 @@ const styles = StyleSheet.create({
     },
     timeText: {
         fontSize: autoSize(18),
-        color: '#333333'
+        color: '#BCC7FF'
     },
     temperatureColumn: {
         flexDirection: 'row',
@@ -78,6 +87,6 @@ const styles = StyleSheet.create({
     },
     temperatureText: {
         fontSize: autoSize(24),
-        color: '#333333'
+        color: '#BCC7FF'
     }
 })

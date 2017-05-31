@@ -13,6 +13,9 @@ import InfoItem from './InfoItem';
 export default class Info extends SceneComponent{
     constructor(...props){
         super(...props);
+        this.state = {
+            selectedIndex:0
+        }
     }
     render(){
         return <View
@@ -25,14 +28,21 @@ export default class Info extends SceneComponent{
                     date = 'Thursday'
                     temperature = '9'
                     type = '1'
+                    isSelected = {this.state.selectedIndex == 0}
+                    onPress = {()=>this.setState({selectedIndex:0})}
                     style = {{backgroundColor:'transparent'}}/>
                 <InfoItem 
                     date = 'Thursday'
                     temperature = '9'
-                    type = '1'/>
+                    type = '1'
+                    onPress = {()=>this.setState({selectedIndex:1})}
+                    isSelected = {this.state.selectedIndex == 1}
+                    />
                 <InfoItem 
                     date = 'Thursday'
                     temperature = '9'
+                    onPress = {()=>this.setState({selectedIndex:2})}
+                    isSelected = {this.state.selectedIndex == 2}
                     type = '1'/>        
         </View>
     }
