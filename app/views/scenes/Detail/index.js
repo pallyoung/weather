@@ -35,6 +35,7 @@ export default class Detail extends Scene{
             }
             this.refs.currentInfo.updateInfo(this.state.currentInfo);
         })
+        console.log(this.props.navigation)
     }
     
     render(){
