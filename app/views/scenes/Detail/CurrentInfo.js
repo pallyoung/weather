@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
     },
     temperature:{
         color:'#fff',
-        fontSize:autoSize(50),
+        fontSize:autoSize(50)
     }
 })

@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     background:{
         height:autoSize(84),
         position:'absolute',
+        width:autoSize(375),
         top:0,
         left:0,
         right:0
