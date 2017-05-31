@@ -13,13 +13,20 @@ import {autoSize} from 'react-native-improver';
 export default class CurrentInfo extends SceneComponent {
     constructor(...props) {
         super(...props);
+        var initalData = this.props.initalData||{};
+        this.state ={
+            ...initalData
+        }
 
+    }
+    updateInfo(info){
+        this.setState(info);
     }
     render() {
         return <View style = {styles.wrapper}>
-                <Text style = {styles.type}>晴天</Text>
-                <Text style = {styles.address}>乌镇</Text>
-                <Text style = {styles.temperature}>-9°</Text>
+                <Text style = {styles.type}>{this.state.type}</Text>
+                <Text style = {styles.address}>{this.state.city}</Text>
+                <Text style = {styles.temperature}>{this.state.temperature}°</Text>
         </View>
     }
 }

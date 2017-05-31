@@ -9,17 +9,31 @@ import {
 } from 'react-native';
 
 import Scene from './../../widget/Scene';
-import Weather,{weather} from './../../../controller/Weather';
+import Weather,{weather,now} from './../../../controller/Weather';
 
 import Info from './Info';
 import CurrentInfo from './CurrentInfo';
 export default class Detail extends Scene{
     constructor(...props){
-        super(...props)
+        super(...props);
+        this.state = {
+            currentInfo:{
+                
+            }
+        }
     }
     componentDidMount() {
-        weather({'city':'龙游'}).then(function(data){
-            console.log(data);
+        now({'city':'龙游'}).then((data)=>{
+            var weather = data.HeWeather5[0];
+            var city = weather.basic.city;
+            var type = weather.now.cond.txt;
+            var temperature = weather.now.tmp;
+            this.state.currentInfo = {
+               city,
+               type,
+               temperature 
+            }
+            this.refs.currentInfo.updateInfo(this.state.currentInfo);
         })
     }
     
@@ -29,8 +43,11 @@ export default class Detail extends Scene{
                 style = {[styles.background,{height:this.height,width:this.width}]}
                 source = {require('./bg_detail.png')}
                 resizeMode = 'stretch'/>
-            <CurrentInfo />
-            <Info />
+            <CurrentInfo 
+                ref = 'currentInfo'
+                initalData = {this.state.currentInfo}/>
+            <Info 
+                onSelectdChange = {()=>{}}/>
         </View>
     }
 }
