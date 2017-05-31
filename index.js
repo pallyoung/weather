@@ -12,6 +12,6 @@ import {
   View
 } from 'react-native';
 
-import Entry from './app';
+import Entry from './app/index';
 
 AppRegistry.registerComponent('weather', () => Entry);
