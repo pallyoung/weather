@@ -12,6 +12,7 @@ import Scene from './../../widget/Scene';
 import Weather,{weather} from './../../../controller/Weather';
 
 import Info from './Info';
+import CurrentInfo from './CurrentInfo';
 export default class Detail extends Scene{
     constructor(...props){
         super(...props)
@@ -28,6 +29,7 @@ export default class Detail extends Scene{
                 style = {[styles.background,{height:this.height,width:this.width}]}
                 source = {require('./bg_detail.png')}
                 resizeMode = 'stretch'/>
+            <CurrentInfo />
             <Info />
         </View>
     }
